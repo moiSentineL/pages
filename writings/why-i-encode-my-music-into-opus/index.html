@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Eleventy v3.1.6">
+    <meta name="author" content="Nibir Sankar">
+    <meta name="copyright" content="Nibir Sankar">
+
+    <!--  -->
+    <!--     <meta name="description" content="My music &quot;hoarding&quot; practices"> -->
+    <!--  -->
+
+
+    <title>Why I encode my music into opus</title>
+
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="RSS"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/media/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/media/meta/favicon-16x16.png">
+    <link rel="manifest" href="/media/meta/site.webmanifest">
+    <link rel="mask-icon" href="/media/meta/safari-pinned-tab.svg" color="#2f2f2f">
+    <link rel="shortcut icon" href="/media/meta/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-config" content="/media/meta/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+
+    <meta property="og:image" content="https://nibirsan.org/media/meta/og-image.jpg" />
+    <meta property="twitter:image" content="https://nibirsan.org/media/meta/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  -->
+    <link rel="stylesheet" href="/style/style.css">
+
+    <!-- <link rel="dns-prefetch" href="https://www.googletagmanager.com"> -->
+    <!-- <link rel="dns-prefetch" href="https://www.google-analytics.com"> -->
+
+</head>
+<main>
+<p>
+<a class="breadcrumb" href="/writings/"><<</a>
+</p>
+<body class="post">
+
+  <time datetime="Tue Mar 17 2026 10:01:36 GMT+0530 (India Standard Time)">Mar 17, 2026</time>
+  <h1 class="title">Why I encode my music into opus</h1>
+  <h4 class="excerpt">My music &quot;hoarding&quot; practices</h4>
+
+  <hr>
+
+<article>
+  <p>I hoard music. I have a 117gig library full of lossless <code>flac</code>s, something that you don’t see an average high-schooler/mathematician doing. Although it’s comparatively smaller than what the expert hoarders have- petabytes. Mine is only a fraction.</p>
+<p>But why even that? Several reasons:</p>
+<ol>
+<li>I like to have control over the media I consume; I hoard other types of media too. No Netflix, no Spotify, and no YouTube unless necessary: I like my files local.</li>
+<li>I am an avid audiophile. Though my rig is quite modest (yet), I like to listen to a higher quality audio than average folk. Though nothing wrong with listening to okay-ish quality here and there; I AM NOT A PEDANT!</li>
+</ol>
+<p>Examples of exceptions: I do stream music when my friend pesters me to listen to <em>that one song</em> or when I need to revisit my 80s mix/radio. I use Metrolist (FOSS) on my phone for that.</p>
+<p>Okay, 117gigs. That’s a lot. A lot for an Android phone, or a minimalist ThinkPad with 512gigs of storage. But again, <em>I need my music handy</em>. I listen to stuff a lot.</p>
+<p>I have two options: serve it via Navidrome/other music server, or take it local. I tried the former, and well… storage is cheaper than bandwidth + power consumption. I can’t afford to have server running, <a href="/blog/p/homelabbing-is-fun/">with internet and Tailscale configs and so on</a>.</p>
+<p><strong>Thus, a truce- convert all the <code>flac</code>s into <code>opus</code>.</strong> And take it local.</p>
+<p>If you look at the specs of the <code>opus</code> codec, you’ll see some impressive stuff. I don’t want to get into technicals here, but TL;DR- <code>opus</code> “conserves” ~95% of the good stuff, and that too with a considerable amount of compression.</p>
+<p>Think about this: all my <code>flac</code>s (a mix of 24 and 16 bit, about 1700 songs), of 117gigs converted to 128k <code>opus</code> is just <em>14gigs</em>!! <strong>That’s ~12% of the original!</strong> And that too without losing too much of the “quality.”</p>
+<p>Surely, I can take those 14gigs anywhere. On my laptop, on my phone, no worries. Now the question is: how much time does it take my computer to do all of this?</p>
+<p>Well, in a modern computer, it takes very less. <code>ffmpeg</code> can encode <code>flac</code>s into <code>opus</code> in a fairly high speed. And most conveniently, you can use the power of scripting to do it for you!</p>
+<p>You can have your main <code>flac</code>s in a harddrive, convert them to <code>opus</code> into your laptop, then you can <code>rsync</code>/syncthing it to your mobile device. Simple workflow!</p>
+<p><a href="https://raw.githubusercontent.com/moiSentineL/dotfiles/1f3874957b9fd4bb29ff6bb2d5f7e8803678e8fe/scripts/opus.sh">This is the script I use</a> for encoding my whole library, which checks for new files and encodes those only, for which the core command is:</p>
+<pre><code class="language-shell">ffmpeg -v warning -n -i &quot;$file&quot; -c:a libopus -b:a 128k &quot;$target_path&quot; &lt; /dev/null
+</code></pre>
+<p>I find this pretty cool. No more fussing. Just me and my music. Simple *nix tools such as <code>ffmpeg</code> can do wonders.</p>
+<p>So this way, I can just put stuff on my phone and laptop and listen away. I use <code>cmus</code> on my ThinkPad and Poweramp on my Android.</p>
+<p>Ending with some music recs:</p>
+<ul>
+<li><em>TooL</em> - 10,000 Days</li>
+<li><em>GoGo Penguin</em> - Fanfares</li>
+<li><em>Ruby Rushton</em> - Trudi’s Songbook Vol. 1 &amp; 2</li>
+<li><em>Yussef Kamaal</em> - Black Focus</li>
+<li><em>Bongripper</em> - Hippie Killer</li>
+<li><em>Deftones</em> - Around the Fur</li>
+<li><em>Porcupine Tree</em> - In Absentia</li>
+<li><em>Vildhjarta</em> - Måsstaden</li>
+<li><em>Russian Circles</em> - Gnosis</li>
+</ul>
+<p>Cheers!</p>
+
+</article>
+
+<!--
+<p class="download-bar">
+  download as → <button onclick="downloadEpub()">epub</button>
+</p> -->
+
+</body>
+</main>
+<footer>
+<hr>
+mtime: Jun 13, 2026, 05:42 PM GMT+5:30<br>
+src: <a href="https://codeberg.org/nibir/pages/">git</a>
+</footer>
+
+<!--<script src="/style/epub.js"></script>-->
+</html>
