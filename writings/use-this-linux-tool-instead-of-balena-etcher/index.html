@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Eleventy v3.1.6">
+    <meta name="author" content="Nibir Sankar">
+    <meta name="copyright" content="Nibir Sankar">
+
+    <!--  -->
+    <!--     <meta name="description" content="So simple, yet useful! Distrohoppers&#39; paradise."> -->
+    <!--  -->
+
+
+    <title>Use this Linux tool instead of Balena Etcher</title>
+
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="RSS"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/media/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/media/meta/favicon-16x16.png">
+    <link rel="manifest" href="/media/meta/site.webmanifest">
+    <link rel="mask-icon" href="/media/meta/safari-pinned-tab.svg" color="#2f2f2f">
+    <link rel="shortcut icon" href="/media/meta/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-config" content="/media/meta/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+
+    <meta property="og:image" content="https://nibirsan.org/media/meta/og-image.jpg" />
+    <meta property="twitter:image" content="https://nibirsan.org/media/meta/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  -->
+    <link rel="stylesheet" href="/style/style.css">
+
+    <!-- <link rel="dns-prefetch" href="https://www.googletagmanager.com"> -->
+    <!-- <link rel="dns-prefetch" href="https://www.google-analytics.com"> -->
+
+</head>
+<main>
+<p>
+<a class="breadcrumb" href="/writings/"><<</a>
+</p>
+<body class="post">
+
+  <time datetime="Mon Jul 06 2026 05:30:00 GMT+0530 (India Standard Time)">Jul 6, 2026</time>
+  <h1 class="title">Use this Linux tool instead of Balena Etcher</h1>
+  <h4 class="excerpt">So simple, yet useful! Distrohoppers&#39; paradise.</h4>
+
+  <hr>
+
+<article>
+  <p>I was today years old when I learned that you can use the native Linux command <code>cp</code> to flash an <code>.img</code> file to a bootable device instead of using tools like Balena Etcher, Rufus, or yet another simple but comparatively bloated, <code>dd</code>.</p>
+<h2 id="why-is-it-useful" tabindex="-1">Why is it useful</h2>
+<p>If you like distrohopping or maybe doing a project like making a Raspberry Pi homelab server, then you’re bound to come across “flashing a USB device” to make it bootable so that the hardware recognises the OS and… runs.</p>
+<p>This “flashing” process usually involves of using software that I’ve mentioned already. But the cool part is <em>you don’t need any of those</em>! You already have it on your Linux machine!</p>
+<pre><code class="language-bash">sudo cp distro.img /dev/&lt;block_device&gt;
+</code></pre>
+<p>Does exactly this!</p>
+<p>(A quick aside: you might be interested in using something like <a href="https://ventoy.net">Ventoy</a> for making a bootable device which contains multiple bootable images. Very useful if you need to have backup OSes and stuff.)</p>
+<h2 id="a-little-how-to" tabindex="-1">A little how-to</h2>
+<p>First, find out the device that you need to flash.</p>
+<pre><code>❯ lsblk
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda           8:0    1     0B  0 disk
+sdb           8:16   1   7.5G  0 disk                             # &lt;&lt;&lt; this is the device
+└─sdb1        8:17   1   7.5G  0 part /run/media/nibir/691B-CB8B  # &lt;&lt;&lt; notice the mount
+zram0       253:0    0     4G  0 disk [SWAP]
+nvme0n1     259:0    0 476.9G  0 disk
+├─nvme0n1p1 259:1    0     1G  0 part /boot
+├─nvme0n1p2 259:2    0   100G  0 part /
+├─nvme0n1p3 259:3    0   360G  0 part /home
+└─nvme0n1p4 259:4    0  15.9G  0 part [SWAP]
+</code></pre>
+<p>But make sure it’s <strong>unmounted</strong>: <code>sudo umount /dev/sdb1</code> or whatever the device is.</p>
+<p>Now, the key part is to <code>cp</code> the image file to the block device <code>/dev/sdb</code> not a partition <code>/dev/sdbX</code> (for any X). This will allow the image file to “do its thing” and make all the necessary partitions itself.</p>
+<p>So finally:</p>
+<pre><code class="language-bash">sudo cp /path/to/distro.img /dev/sdb
+</code></pre>
+<p>Wait… and vóila! You know have a perfectly usable bootable USB drive. Oh and works with SD cards as well!</p>
+<p>Happy tinkering! And don’t <code>cp</code> to your files partition~~~</p>
+
+</article>
+
+<!--
+<p class="download-bar">
+  download as → <button onclick="downloadEpub()">epub</button>
+</p> -->
+
+</body>
+</main>
+<footer>
+<hr>
+mtime: Jul 6, 2026, 05:25 PM GMT+5:30<br>
+src: <a href="https://codeberg.org/nibir/nibirsan.org/">git</a>
+</footer>
+
+<!--<script src="/style/epub.js"></script>-->
+</html>
