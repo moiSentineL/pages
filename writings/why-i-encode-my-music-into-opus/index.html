@@ -31,6 +31,7 @@
 
     <!--  -->
     <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/prism.css">
 
     <!-- <link rel="dns-prefetch" href="https://www.googletagmanager.com"> -->
     <!-- <link rel="dns-prefetch" href="https://www.google-analytics.com"> -->
@@ -65,8 +66,7 @@
 <p>Well, in a modern computer, it takes very less. <code>ffmpeg</code> can encode <code>flac</code>s into <code>opus</code> in a fairly high speed. And most conveniently, you can use the power of scripting to do it for you!</p>
 <p>You can have your main <code>flac</code>s in a harddrive, convert them to <code>opus</code> into your laptop, then you can <code>rsync</code>/syncthing it to your mobile device. Simple workflow!</p>
 <p><a href="https://raw.githubusercontent.com/moiSentineL/dotfiles/1f3874957b9fd4bb29ff6bb2d5f7e8803678e8fe/scripts/opus.sh">This is the script I use</a> for encoding my whole library, which checks for new files and encodes those only, for which the core command is:</p>
-<pre><code class="language-shell">ffmpeg -v warning -n -i &quot;$file&quot; -c:a libopus -b:a 128k &quot;$target_path&quot; &lt; /dev/null
-</code></pre>
+<pre class="language-shell"><code class="language-shell">ffmpeg <span class="token parameter variable">-v</span> warning <span class="token parameter variable">-n</span> <span class="token parameter variable">-i</span> <span class="token string">"<span class="token variable">$file</span>"</span> <span class="token parameter variable">-c:a</span> libopus <span class="token parameter variable">-b:a</span> 128k <span class="token string">"<span class="token variable">$target_path</span>"</span> <span class="token operator">&lt;</span> /dev/null</code></pre>
 <p>I find this pretty cool. No more fussing. Just me and my music. Simple *nix tools such as <code>ffmpeg</code> can do wonders.</p>
 <p>So this way, I can just put stuff on my phone and laptop and listen away. I use <code>cmus</code> on my ThinkPad and Poweramp on my Android.</p>
 <p>Ending with some music recs:</p>
@@ -94,7 +94,7 @@
 </main>
 <footer>
 <hr>
-mtime: Jul 6, 2026, 05:25 PM GMT+5:30<br>
+mtime: Jul 6, 2026, 05:39 PM GMT+5:30<br>
 src: <a href="https://codeberg.org/nibir/nibirsan.org/">git</a>
 </footer>
 

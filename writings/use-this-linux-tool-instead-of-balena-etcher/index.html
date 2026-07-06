@@ -31,6 +31,7 @@
 
     <!--  -->
     <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/prism.css">
 
     <!-- <link rel="dns-prefetch" href="https://www.googletagmanager.com"> -->
     <!-- <link rel="dns-prefetch" href="https://www.google-analytics.com"> -->
@@ -53,29 +54,26 @@
 <h2 id="why-is-it-useful" tabindex="-1">Why is it useful</h2>
 <p>If you like distrohopping or maybe doing a project like making a Raspberry Pi homelab server, then you’re bound to come across “flashing a USB device” to make it bootable so that the hardware recognises the OS and… runs.</p>
 <p>This “flashing” process usually involves of using software that I’ve mentioned already. But the cool part is <em>you don’t need any of those</em>! You already have it on your Linux machine!</p>
-<pre><code class="language-bash">sudo cp distro.img /dev/&lt;block_device&gt;
-</code></pre>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> distro.img /dev/<span class="token operator">&lt;</span>block_device<span class="token operator">></span></code></pre>
 <p>Does exactly this!</p>
 <p>(A quick aside: you might be interested in using something like <a href="https://ventoy.net">Ventoy</a> for making a bootable device which contains multiple bootable images. Very useful if you need to have backup OSes and stuff.)</p>
 <h2 id="a-little-how-to" tabindex="-1">A little how-to</h2>
 <p>First, find out the device that you need to flash.</p>
-<pre><code>❯ lsblk
+<pre class="language-bash"><code class="language-bash">❯ lsblk
 NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-sda           8:0    1     0B  0 disk
-sdb           8:16   1   7.5G  0 disk                             # &lt;&lt;&lt; this is the device
-└─sdb1        8:17   1   7.5G  0 part /run/media/nibir/691B-CB8B  # &lt;&lt;&lt; notice the mount
-zram0       253:0    0     4G  0 disk [SWAP]
-nvme0n1     259:0    0 476.9G  0 disk
-├─nvme0n1p1 259:1    0     1G  0 part /boot
-├─nvme0n1p2 259:2    0   100G  0 part /
-├─nvme0n1p3 259:3    0   360G  0 part /home
-└─nvme0n1p4 259:4    0  15.9G  0 part [SWAP]
-</code></pre>
+sda           <span class="token number">8</span>:0    <span class="token number">1</span>     0B  <span class="token number">0</span> disk
+sdb           <span class="token number">8</span>:16   <span class="token number">1</span>   <span class="token number">7</span>.5G  <span class="token number">0</span> disk                             <span class="token comment"># &lt;&lt;&lt; this is the device</span>
+└─sdb1        <span class="token number">8</span>:17   <span class="token number">1</span>   <span class="token number">7</span>.5G  <span class="token number">0</span> part /run/media/nibir/691B-CB8B  <span class="token comment"># &lt;&lt;&lt; notice the mount</span>
+zram0       <span class="token number">253</span>:0    <span class="token number">0</span>     4G  <span class="token number">0</span> disk <span class="token punctuation">[</span>SWAP<span class="token punctuation">]</span>
+nvme0n1     <span class="token number">259</span>:0    <span class="token number">0</span> <span class="token number">476</span>.9G  <span class="token number">0</span> disk
+├─nvme0n1p1 <span class="token number">259</span>:1    <span class="token number">0</span>     1G  <span class="token number">0</span> part /boot
+├─nvme0n1p2 <span class="token number">259</span>:2    <span class="token number">0</span>   100G  <span class="token number">0</span> part /
+├─nvme0n1p3 <span class="token number">259</span>:3    <span class="token number">0</span>   360G  <span class="token number">0</span> part /home
+└─nvme0n1p4 <span class="token number">259</span>:4    <span class="token number">0</span>  <span class="token number">15</span>.9G  <span class="token number">0</span> part <span class="token punctuation">[</span>SWAP<span class="token punctuation">]</span></code></pre>
 <p>But make sure it’s <strong>unmounted</strong>: <code>sudo umount /dev/sdb1</code> or whatever the device is.</p>
 <p>Now, the key part is to <code>cp</code> the image file to the block device <code>/dev/sdb</code> not a partition <code>/dev/sdbX</code> (for any X). This will allow the image file to “do its thing” and make all the necessary partitions itself.</p>
 <p>So finally:</p>
-<pre><code class="language-bash">sudo cp /path/to/distro.img /dev/sdb
-</code></pre>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> /path/to/distro.img /dev/sdb</code></pre>
 <p>Wait… and vóila! You know have a perfectly usable bootable USB drive. Oh and works with SD cards as well!</p>
 <p>Happy tinkering! And don’t <code>cp</code> to your files partition~~~</p>
 
@@ -90,7 +88,7 @@ nvme0n1     259:0    0 476.9G  0 disk
 </main>
 <footer>
 <hr>
-mtime: Jul 6, 2026, 05:25 PM GMT+5:30<br>
+mtime: Jul 6, 2026, 05:39 PM GMT+5:30<br>
 src: <a href="https://codeberg.org/nibir/nibirsan.org/">git</a>
 </footer>
 
