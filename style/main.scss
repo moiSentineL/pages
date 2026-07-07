@@ -137,7 +137,7 @@ pre {
 
 img {
   max-width: 100%;
-  margin: 0.5rem auto;
+  margin: auto;
   display: block;
   height: auto;
 }
@@ -216,4 +216,10 @@ audio {
 
 footer {
     margin-top: 1em;
+}
+
+figcaption {
+    font-style: italic;
+    text-align: center;
+    font-size: small;
 }

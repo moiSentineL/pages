@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Eleventy v3.1.6">
+    <meta name="author" content="Nibir Sankar">
+    <meta name="copyright" content="Nibir Sankar">
+
+    <!--  -->
+    <!--     <meta name="description" content="Because I like it difficult"> -->
+    <!--  -->
+
+
+    <title>Self-Hosted Digital Calendar</title>
+
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="RSS"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/media/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/media/meta/favicon-16x16.png">
+    <link rel="manifest" href="/media/meta/site.webmanifest">
+    <link rel="mask-icon" href="/media/meta/safari-pinned-tab.svg" color="#2f2f2f">
+    <link rel="shortcut icon" href="/media/meta/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-config" content="/media/meta/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+
+    <meta property="og:image" content="https://nibirsan.org/media/meta/og-image.jpg" />
+    <meta property="twitter:image" content="https://nibirsan.org/media/meta/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  -->
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/prism.css">
+
+    <!-- <link rel="dns-prefetch" href="https://www.googletagmanager.com"> -->
+    <!-- <link rel="dns-prefetch" href="https://www.google-analytics.com"> -->
+
+</head>
+<main>
+<p>
+<a class="breadcrumb" href="/writings/"><<</a>
+</p>
+<body class="post">
+
+  <time datetime="Tue Jul 07 2026 05:30:00 GMT+0530 (India Standard Time)">Jul 7, 2026</time>
+  <h1 class="title">Self-Hosted Digital Calendar</h1>
+  <h4 class="excerpt">Because I like it difficult</h4>
+
+  <hr>
+
+<article>
+  <p>I am on a mission to De-google my tech ecosystem and if luck permits, persuade others to do so as well; it turns out that Google does some pretty <a href="https://keepandroidopen.org">bad</a> <a href="nimbus">stuff</a>. And also to protect my data because they have enough of that already.</p>
+<p>Anyhow, my college will soon start and I wanted a digital calendar in my life once again. Having one of them is important from a productivity/time management point-of-view, and I couldn’t use Google Calendar anymore.</p>
+<p>My first stop was using a public <a href="https://nextcloud.com">NextCloud</a> instance (courtesy of <a href="https://tilde.green">tilde.green</a>) and use the calendar feature. But it soon turned out to be an unreliable option for me because of some authentication issues I was facing (just power-user stuff).</p>
+<p>So then, the only rational option was to host my own “calendar” service, and so I did.</p>
+<h2 id="how-does-it-work%3F" tabindex="-1">How does it work?</h2>
+<p>How these digital calendars operate is called “CalDAV”, a Internet standard for all things calendar. It’s a protocol (like HTTP) but for calendars, events, and all such things. If you can hack up a CalDAV server, then you’re good to go! Just bind your CalDAV client to the server and kaboom!</p>
+<p><figure><br>
+<img src="/images/MT7nRVP8lz-800.webp" alt="Radicale - CalDAV interface" loading="lazy" decoding="async" width="1400" height="350" srcset="/images/MT7nRVP8lz-800.webp 800w, /images/MT7nRVP8lz-1400.webp 1400w" sizes="100vw"><br>
+</figure></p>
+<p>In my case, I am using <a href="https://radicale.org">Radicale</a> as my CalDAV server and a combination of apps as clients (to access the calendars).</p>
+<p>A note on CalDAV and its cousin CardDAV is given below.</p>
+<h2 id="why-self-host-it%3F" tabindex="-1">Why self-host it?</h2>
+<ul>
+<li>It’s fun to do this kinda stuff.</li>
+<li>You learn a bunch of things: networking, sys-admin skills, debugging, and so on.</li>
+<li>You become less dependent on “someone else’s computer” i.e the CLOUD.</li>
+</ul>
+<p>But in particular to my project:</p>
+<ul>
+<li>Radicale uses VERY little resources.</li>
+<li>It’s very easy to setup.</li>
+<li>It’s a Pascal’s Wager.</li>
+</ul>
+<h3 id="but-what-do-i-need-to-host-it%3F" tabindex="-1">But what do I need to host it?</h3>
+<p>You can do it in your laptop now, it’s just a <code>PyPi</code> package, which is basically <strong>free</strong>!</p>
+<p>But you can also use a dedicated SBC, a VM or a VPS to do it, if you’re interested in getting into <a href="https://nibirsan.org/writings/homelabbing-is-fun/">homelabbing</a></p>
+<p>I think I’ll write a separate blogpost on doing this in a RaspberryPi Zero 2 W. Stay Tuned!</p>
+<h2 id="what-does-it-look-like-in-the-end%3F" tabindex="-1">What does it look like in the end?</h2>
+<p>Like fresh air after a thunderstorm. Like FREEDOMMMMM!!!</p>
+<p>It feels liberating to host any service on your own, because you now have control of your own stuff, which is hard to do in 2026.</p>
+<p>Anyhow, I can access the server and my calendar from my Android phone and tablet and can use it as well!</p>
+<p><figure><br>
+<img src="/images/ZHCwn645tN-800.webp" alt="KashCal interface" loading="lazy" decoding="async" width="1400" height="875" srcset="/images/ZHCwn645tN-800.webp 800w, /images/ZHCwn645tN-1400.webp 1400w" sizes="100vw"><br>
+</figure></p>
+
+</article>
+
+<!--
+<p class="download-bar">
+  download as → <button onclick="downloadEpub()">epub</button>
+</p> -->
+
+</body>
+</main>
+<footer>
+<hr>
+mtime: Jul 7, 2026, 06:04 PM GMT+5:30<br>
+src: <a href="https://codeberg.org/nibir/nibirsan.org/">git</a>
+</footer>
+
+<!--<script src="/style/epub.js"></script>-->
+</html>
