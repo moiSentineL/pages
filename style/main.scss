@@ -111,9 +111,6 @@ body {
     max-width: 80ch;
 }
 
-// article {
-//     font-family: "Spectral", serif;
-// }
 
 .title {
   margin: 0.5rem 0 0.5rem;
@@ -122,6 +119,10 @@ body {
 .excerpt {
   font-size: 1em;
   margin: 0 0 1em;
+}
+
+p {
+    padding: 0.2rem 0;
 }
 
 code {
@@ -143,7 +144,7 @@ img {
 }
 
 ul {
-    padding-left: 1rem;
+    padding: 0.2rem 1rem 0.2rem;
 }
 
 li {
@@ -222,4 +223,40 @@ figcaption {
     font-style: italic;
     text-align: center;
     font-size: small;
+}
+
+.header-anchor {
+  color: #909090;
+  text-decoration: none;
+  @media screen and (min-width: 700px) {
+    left: 0.15rem;
+    position: relative;
+    width: 0.8em;
+  }
+}
+
+.header-anchor__symbol {
+  @media screen and (min-width: 700px) and (hover: hover) {
+    visibility: hidden;
+
+    h2:hover &,
+    h3:hover &,
+    h4:hover &,
+    h5:hover &,
+    h6:hover &,
+    .header-anchor:focus & {
+      visibility: visible;
+    }
+  }
+}
+
+.screen-reader-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

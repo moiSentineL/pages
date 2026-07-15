@@ -51,13 +51,13 @@
 
 <article>
   <p>I was today years old when I learned that you can use the native Linux command <code>cp</code> to flash an <code>.img</code> file to a bootable device instead of using tools like Balena Etcher, Rufus, or yet another simple but comparatively bloated, <code>dd</code>.</p>
-<h2 id="why-is-it-useful" tabindex="-1">Why is it useful</h2>
+<h2 id="why-is-it-useful" tabindex="-1">Why is it useful<a class="header-anchor" href="#why-is-it-useful"><span aria-hidden="true" class="header-anchor__symbol">#</span></a></h2>
 <p>If you like distrohopping or maybe doing a project like making a Raspberry Pi homelab server, then you’re bound to come across “flashing a USB device” to make it bootable so that the hardware recognises the OS and… runs.</p>
 <p>This “flashing” process usually involves of using software that I’ve mentioned already. But the cool part is <em>you don’t need any of those</em>! You already have it on your Linux machine!</p>
 <pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> distro.img /dev/<span class="token operator">&lt;</span>block_device<span class="token operator">></span></code></pre>
 <p>Does exactly this!</p>
 <p>(A quick aside: you might be interested in using something like <a href="https://ventoy.net">Ventoy</a> for making a bootable device which contains multiple bootable images. Very useful if you need to have backup OSes and stuff.)</p>
-<h2 id="a-little-how-to" tabindex="-1">A little how-to</h2>
+<h2 id="a-little-how-to" tabindex="-1">A little how-to<a class="header-anchor" href="#a-little-how-to"><span aria-hidden="true" class="header-anchor__symbol">#</span></a></h2>
 <p>First, find out the device that you need to flash.</p>
 <pre class="language-bash"><code class="language-bash">❯ lsblk
 NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
@@ -88,7 +88,7 @@ nvme0n1     <span class="token number">259</span>:0    <span class="token number
 </main>
 <footer>
 <hr>
-mtime: Jul 7, 2026, 06:34 PM GMT+5:30<br>
+mtime: Jul 15, 2026, 05:58 PM GMT+5:30<br>
 src: <a href="https://codeberg.org/nibir/nibirsan.org/">git</a>
 </footer>
 

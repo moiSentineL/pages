@@ -52,7 +52,7 @@
 <article>
   <p>I love learning new tools and experimenting with them like a madman. Recently I discovered docker and tailscale, and oh boy…</p>
 <p>Sure enough, I found myself diving deeper into the homelabbing culture (thanks reddit and youtube). But thankfully I have not yet bought an SBC (but I am desperate to get one!)</p>
-<h2 id="docker-and-docker-compose" tabindex="-1">Docker and Docker-compose</h2>
+<h2 id="docker-and-docker-compose" tabindex="-1">Docker and Docker-compose<a class="header-anchor" href="#docker-and-docker-compose"><span aria-hidden="true" class="header-anchor__symbol">#</span></a></h2>
 <p>I use Arch. Things get messy. You run into weird dependency errors, <a href="https://aur.archlinux.org/">AUR</a> BS, and typical problems that you might experience with a rolling-release type Linux distro.</p>
 <p>Then Docker came into my life. I had heard about it so much, but never bothered to try it out. What it essentially does is create isolated environments (called “containers”) for you to run your software on. Without <em>any</em> interference.</p>
 <p>@<a href="https://www.youtube.com/watch?v=DQdB7wFEygo">youtube</a></p>
@@ -63,7 +63,7 @@
 <p>Just make a folder where you will store your <code>yaml</code> file and necessary configs, and run <code>sudo docker-compose up -d</code>. (Make sure to check tutorials before lol).</p>
 <p>And vóila, I now have my own music server (<a href="https://www.navidrome.org/">Navidrome</a>), <a href="https://jellyfin.org/">Jellyfin</a> which I can access from anywhere.</p>
 <p>Wait, but how?</p>
-<h2 id="tailscale" tabindex="-1">Tailscale</h2>
+<h2 id="tailscale" tabindex="-1">Tailscale<a class="header-anchor" href="#tailscale"><span aria-hidden="true" class="header-anchor__symbol">#</span></a></h2>
 <p><a href="https://tailscale.com/">Tailscale</a> is (sort of) a VPN service that you can use to access your devices from anywhere.</p>
 <p>So, what you can do is, keep your homelab at your home (duh!) and access it from that shitty bistro you visit every now and then.</p>
 <p>All you have to do is connect to your Tailnet (that’s the name for your Tailscale network) via the VPN (available on almost all possible OS’s).</p>
@@ -76,7 +76,7 @@
 <pre class="language-bash"><code class="language-bash"><span class="token function">ssh</span> nibir@absurd</code></pre>
 <p>or whatever the device name is. Super cool!</p>
 <p>Also… I found a cool workflow to use Tailscale:</p>
-<h2 id="remote-music-production" tabindex="-1">Remote Music Production</h2>
+<h2 id="remote-music-production" tabindex="-1">Remote Music Production<a class="header-anchor" href="#remote-music-production"><span aria-hidden="true" class="header-anchor__symbol">#</span></a></h2>
 <p>My producer friend lives 60kms away from my home, and we needed to make the song we’ve been putting off for 1.5 years. And since I am the musician and have all the setup, I needed my friend to take control of my PC and DAW and help me record and mix stuff.</p>
 <p>But how could he do it? We also needed crystal clear audio. Latency on his side didn’t matter as long as the quality was nice; he didn’t need to record anything.</p>
 <p>So, we set up a tailnet of our own, connected our devices and used <a href="https://app.lizardbyte.dev/Sunshine/?lng=en-US">Sunshine</a>+<a href="https://moonlight-stream.org/">Moonlight</a> to control the PCs. These apps were actually made for playing games from other devices, but you could do more than that, right? Like, making music!</p>
@@ -88,7 +88,7 @@
 <p>So, that’s how my friend and I recorded one part of our song. <a href="https://pillowcase.su/f/4ee3a8c2b320120877e84e3c9324573c">Listen here</a>!<br>
 A lot more to do, but we at least we got something done!</p>
 <p>Amazing experience. Though I have had to do some tweaking here and there. These reddit posts helped me.</p>
-<h2 id="future-plans%3F" tabindex="-1">Future plans?</h2>
+<h2 id="future-plans" tabindex="-1">Future plans?<a class="header-anchor" href="#future-plans"><span aria-hidden="true" class="header-anchor__symbol">#</span></a></h2>
 <p>I wanna do a lot more with docker and tailscale.</p>
 <ul>
 <li>Host wallabag</li>
@@ -113,7 +113,7 @@ A lot more to do, but we at least we got something done!</p>
 </main>
 <footer>
 <hr>
-mtime: Jul 7, 2026, 06:34 PM GMT+5:30<br>
+mtime: Jul 15, 2026, 05:58 PM GMT+5:30<br>
 src: <a href="https://codeberg.org/nibir/nibirsan.org/">git</a>
 </footer>
 
