@@ -38,6 +38,7 @@
 
 </head>
 <main>
+
 <p>
 <a class="breadcrumb" href="/writings/"><<</a>
 </p>
@@ -77,9 +78,17 @@ And stillness sprouts with merry laughter.</p>
 </main>
 <footer>
 <hr>
-mtime: Jul 19, 2026, 07:41 PM GMT+5:30<br>
+mtime: Jul 19, 2026, 07:48 PM GMT+5:30<br>
 src: <a href="https://codeberg.org/nibir/nibirsan.org/">git</a>
 </footer>
 
 <!--<script src="/style/epub.js"></script>-->
+<script>
+  const hero = document.querySelector('.hero');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const fadeHeight = 400; // how many pixels to fade hero
+    hero.style.opacity = Math.max(0, 1 - scrollY / fadeHeight);
+  });
+</script>
 </html>
