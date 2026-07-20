@@ -244,4 +244,16 @@ figcaption {
   background: linear-gradient(to bottom, rgba(18, 18, 18, 0.4), rgba(18, 18, 18, 0) 50%, rgba(18, 18, 18, 0.8) 80%, rgb(18, 18, 18) 100%);
 }
 
+.banner {
+  width: 100%;
+  padding: 8px 8px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  box-sizing: border-box;
+  position: relative;
+}
+
 /*# sourceMappingURL=style.css.map */
