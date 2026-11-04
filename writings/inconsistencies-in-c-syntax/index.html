@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Eleventy v3.1.6">
+    <meta name="author" content="Nibir Sankar">
+    <meta name="copyright" content="Nibir Sankar">
+
+    <!--  -->
+    <!--     <meta name="description" content="The pointer!"> -->
+    <!--  -->
+
+
+    <title>Inconsistencies in C syntax</title>
+
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="RSS"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/media/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/media/meta/favicon-16x16.png">
+    <link rel="manifest" href="/media/meta/site.webmanifest">
+    <link rel="mask-icon" href="/media/meta/safari-pinned-tab.svg" color="#2f2f2f">
+    <link rel="shortcut icon" href="/media/meta/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-config" content="/media/meta/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+
+    <meta property="og:image" content="https://nibirsan.org/media/meta/og-image.jpg" />
+    <meta property="twitter:image" content="https://nibirsan.org/media/meta/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  -->
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/prism.css">
+
+    <!-- <link rel="dns-prefetch" href="https://www.googletagmanager.com"> -->
+    <!-- <link rel="dns-prefetch" href="https://www.google-analytics.com"> -->
+
+</head>
+<main>
+
+<p>
+<a class="breadcrumb" href="/writings/"><<</a>
+</p>
+<body class="post">
+
+  <time datetime="Wed Nov 04 2026 05:30:00 GMT+0530 (India Standard Time)">Nov 4, 2026</time>
+  <h1 class="title">Inconsistencies in C syntax</h1>
+  <h4 class="excerpt">The pointer!</h4>
+
+  <hr>
+
+<article>
+  <p>I will probably update this post later in life, but for now I would like to address this very, very inconsistent syntax in C.</p>
+<p>I am talking about the <code>*</code> that we use while dealing with pointers.</p>
+<p>Consider this code:</p>
+<pre class="language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> q <span class="token operator">=</span> <span class="token operator">*</span>p<span class="token punctuation">;</span></code></pre>
+<p>This code says:</p>
+<ul>
+<li>“Hey, <code>i</code> is an integer”</li>
+<li>“Hey, <code>p</code> is a <em>pointer variable</em> to <code>i</code>” (i.e <code>p</code> contains the address to <code>i</code>)</li>
+<li>“Assign <code>p</code> to the address of <code>i</code>” (that we get by <code>&amp;</code> operator).</li>
+<li>“Hey, <code>q</code> is another integer which contains the value of whatever <code>p</code> points to” (in our case, it’s <code>i</code>, by <code>*</code> operator).</li>
+</ul>
+<p>Here we see two <code>*p</code>’s, with two completely different meaning!</p>
+<p>The first <code>*p</code> is used to indicate that <code>p</code> is a pointer variable. The second is used to <em>get the value</em> of whatever <code>p</code> (an address) contains, which is the value of <code>i</code>. In the second case, <code>*</code> is an operator, not an “indicator”.</p>
+<p>Fine. Inconsistent, but it makes sense. Right?</p>
+<p>Now, consider this:</p>
+<pre class="language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">,</span> q <span class="token operator">=</span> <span class="token operator">*</span>p<span class="token punctuation">;</span></code></pre>
+<p>Can you figure out what <em>this</em> says?</p>
+<p>You might have these questions:</p>
+<ul>
+<li>“Shouldn’t it be <code>p = &amp;i</code> instead?” Kinda…</li>
+<li>“Shouldn’t <code>*p = &amp;i</code> give the value of <code>i</code>?” No, it gives the <em>address</em> of <code>i</code>.</li>
+<li>“If <code>q = *p</code>, then isn’t <code>q = &amp;i</code>?” No, <code>q</code> is not declared to be a pointer variable.</li>
+</ul>
+<p>Well, you’re right to have these questions. C is a very compact, not-so-verbose language. Often, it’s hard to understand because the meaning is hidden under symbols. And the thing is that in this world of programming, we have too many things to implement, but too few symbols on our keyboard.</p>
+<p>To address that “kinda”, which took too many of my braincells, consider:</p>
+<pre class="language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span></code></pre>
+<p>Which is a short hand for:</p>
+<pre class="language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span></code></pre>
+<p>Both say the same thing. This is what makes things complicated. It <strong>should</strong> be <code>p = &amp;i</code>, but only if you initialise <code>*p</code> at first.</p>
+<p>This is why reading a C codebase is not for GenZ’s. We simply don’t have that much attention span and cognitive endurance to think about nuances. Which is all the more reason we should program in C! And Rust!</p>
+
+</article>
+
+<!--
+<p class="download-bar">
+  download as → <button onclick="downloadEpub()">epub</button>
+</p> -->
+
+</body>
+</main>
+<footer>
+<hr>
+have a thought? <a href="mailto:nibir@nibirsan.org">email</a><br>
+mtime: Nov 4, 2026, 04:15 PM GMT+5:30<br>
+src: <a href="https://codeberg.org/nibir/nibirsan.org/">git</a>
+</footer>
+
+<!--<script src="/style/epub.js"></script>-->
+<script>
+  const hero = document.querySelector('.hero');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const fadeHeight = 400; // how many pixels to fade hero
+    hero.style.opacity = Math.max(0, 1 - scrollY / fadeHeight);
+  });
+</script>
+</html>
